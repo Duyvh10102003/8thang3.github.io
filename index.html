@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng 8/3</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            color: #e60073;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .photos {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        .flower {
+            height: 100px;
+            width: 100px;
+            margin-top: 15px;
+            animation: float 3s infinite ease-in-out;
+        }
+        .marquee {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .marquee span {
+            display: inline-block;
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+            animation: marquee 10s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Chúc Mừng Ngày 8/3</h1>
+            <p>Mẹ và Chị Hai yêu quý,</p>
+            <p>Chúc hai người phụ nữ quan trọng nhất trong đời con luôn mạnh khỏe, hạnh phúc và tràn đầy niềm vui.</p>
+            <p>Cảm ơn mẹ và chị hai vì tất cả tình yêu thương và sự hy sinh.</p>
+            <p>Yêu thương nhiều! 💖</p>
+            <div class="photos">
+                <img src="mom.jpg" alt="Mẹ" class="photo">
+                <img src="sister.jpg" alt="Chị Hai" class="photo">
+            </div>
+            <img src="https://file.hstatic.net/200000455999/article/y_nghia_hoa_hong_a3efe1fd01cc435a8c85d1ddfd71748f.png" alt="Flower" class="flower">
+        </div>
+    </div>
+    <div class="marquee"><span>💐 Chúc mừng Ngày Quốc tế Phụ nữ 8/3! Hạnh phúc, sức khỏe và niềm vui luôn bên bạn! 💖</span></div>
+
+    <!-- Nhạc nền -->
+    <audio id="bg-music" autoplay loop muted>
+        <source src="nhac.mp3" type="audio/mp3">
+        Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            var music = document.getElementById("bg-music");
+            music.muted = true; // Bật mute để tránh bị chặn
+            music.play().then(() => {
+                music.muted = false; // Bỏ mute để có âm thanh
+            }).catch(error => {
+                console.log("Trình duyệt chặn tự động phát, chờ tương tác...");
+                document.body.addEventListener("click", () => {
+                    music.play();
+                }, { once: true }); // Chỉ cần 1 lần click là phát
+            });
+    
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: "Nhạc nền 8/3",
+                    artist: "Tặng Mẹ và Chị Hai",
+                    artwork: [{ src: "flower.png", sizes: "96x96", type: "image/png" }]
+                });
+            }
+        });
+    </script>
+</body>
+</html>
